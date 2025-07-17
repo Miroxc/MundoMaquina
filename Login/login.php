@@ -2,19 +2,20 @@
 session_start();
 
 // Incluir conexión centralizada
-include __DIR__ . '/../Baseto/config_db.php'; // Ajusta la ruta
+// Asegúrate de que esta ruta sea correcta para tu configuración
+include __DIR__ . '/../Baseto/config_db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    $username = trim($_POST['username'] ?? ''); // Usar ?? para evitar errores si no se envía
+    $password = trim($_POST['password'] ?? '');
 
     // Validar campos vacíos
     if (empty($username) || empty($password)) {
-        echo "invalid";
+        echo "invalid"; // O podrías ser más específico como "empty_fields"
         exit();
     }
 
-    $sql = "SELECT id, password FROM usuarios WHERE username = ?";
+    $sql = "SELECT id, username, password FROM usuarios WHERE username = ?"; // Seleccionar también el username para la sesión
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
@@ -23,13 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->store_result();
 
         if ($stmt->num_rows === 1) {
-            $stmt->bind_result($id, $hash);
+            $stmt->bind_result($id, $db_username, $hash); // Obtener también el username de la DB
             $stmt->fetch();
 
             if (password_verify($password, $hash)) {
                 // Guardar datos en sesión
                 $_SESSION['user_id'] = $id;
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $db_username; // Usar el username de la DB
                 echo "success";
             } else {
                 echo "invalid"; // Contraseña incorrecta
@@ -40,11 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->close();
     } else {
-        echo "error"; // Error al preparar la consulta
+        // Error en la preparación de la consulta (ej. error de sintaxis SQL)
+        error_log("Error al preparar la consulta en login.php: " . $conn->error); // Registrar el error para depuración
+        echo "error";
     }
 
     $conn->close();
 } else {
-    echo "invalid"; // Método no permitido
+    echo "invalid"; // Método no permitido (solo POST)
 }
 ?>
