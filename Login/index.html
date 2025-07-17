@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Iniciar Sesión y Registrarse</title>
+	<link rel="icon" href="img/Icono.png" type="image/png">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style_login.css">
+</head>
+<body>
+	<div id="container" class="container">
+		<!-- SECCIÓN DE FORMULARIOS -->
+		<div class="row">
+			<!-- REGISTRO -->
+			<div class="col align-items-center flex-col sign-up">
+				<div class="form-wrapper align-items-center">
+					<div class="form sign-up">
+						<div class="input-group">
+							<i class='bx bxs-user'></i>
+							<input type="text" placeholder="Nombre de usuario">
+						</div>
+						<div class="input-group">
+							<i class='bx bx-mail-send'></i>
+							<input type="email" placeholder="Correo electrónico">
+						</div>
+						<div class="input-group">
+							<i class='bx bxs-lock-alt'></i>
+							<input type="password" placeholder="Contraseña">
+						</div>
+						<div class="input-group">
+							<i class='bx bxs-lock-alt'></i>
+							<input type="password" placeholder="Confirmar contraseña">
+						</div>
+						<button>Registrarse</button>
+						<p>
+							<span>¿Ya tienes una cuenta?</span>
+							<b onclick="toggle()" class="pointer">Inicia sesión aquí</b>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- FIN REGISTRO -->
+
+			<!-- INICIO DE SESIÓN -->
+			<div class="col align-items-center flex-col sign-in">
+				<div class="form-wrapper align-items-center">
+					<div class="form sign-in">
+						<div class="input-group">
+							<i class='bx bxs-user'></i>
+							<input type="text" placeholder="Nombre de usuario">
+						</div>
+						<div class="input-group">
+							<i class='bx bxs-lock-alt'></i>
+							<input type="password" placeholder="Contraseña">
+						</div>
+						<button>Iniciar sesión</button>
+						<p><b>¿Olvidaste tu contraseña?</b></p>
+						<p>
+							<span>¿No tienes una cuenta?</span>
+							<b onclick="toggle()" class="pointer">Regístrate aquí</b>
+						</p>
+					</div>
+				</div>
+				<div class="form-wrapper"></div>
+			</div>
+			<!-- FIN INICIO DE SESIÓN -->
+		</div>
+		<!-- FIN SECCIÓN DE FORMULARIOS -->
+
+		<!-- SECCIÓN DE CONTENIDO -->
+		<div class="row content-row">
+			<!-- CONTENIDO INICIO -->
+			<div class="col align-items-center flex-col">
+				<div class="text sign-in">
+					<h2>Bienvenido</h2>
+					<p>Para mantenerte conectado, por favor inicia sesión con tu información personal</p>
+				</div>
+			</div>
+			<!-- FIN CONTENIDO INICIO -->
+
+			<!-- CONTENIDO REGISTRO -->
+			<div class="col align-items-center flex-col">
+				<div class="text sign-up">
+					<h2>Únete a nosotros</h2>
+					<p>Ingresa tus datos personales y comienza tu viaje con nosotros</p>
+				</div>
+			</div>
+			<!-- FIN CONTENIDO REGISTRO -->
+		</div>
+		<!-- FIN SECCIÓN DE CONTENIDO -->
+	</div>
+
+	<!-- JS -->
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- MI JS -->
+    <script src="script.js"></script>
+</body>
+</html>
